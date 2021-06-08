@@ -37,16 +37,8 @@ const pAequorFactory = (specimenNum, dna) =>{
       console.log(`Specimen #${this.specimenNum} and specimen #${specimenTwo.specimenNum} have ${percentShared} % DNA in common`);
     },
     willLikelySurvive(){
-      let goodDNA = 0;
-      for(let i =0; i < this.dna.length; i++){
-        if(this.dna[i] === 'C' || this.dna[i] === 'G'){
-          goodDNA ++;
-        }
-      };
-      let pctGoodDNA = goodDNA / this.dna.length;
-      if(pctGoodDNA >= .6){
-        return true;
-      } return false;
+      const goodDNA = this.dna.filter(base => base === 'C' || base === 'G');
+      return goodDNA.length / this.dna.length >= 0.6;
     }
   };
 };
@@ -75,12 +67,12 @@ const organism2 = pAequorFactory(3, ['G', 'T', 'T', 'T','G', 'G', 'G', 'G','G', 
 organism1.compareDNA(organism2); 
 */ 
 
-/* testing likely survive method 
+/* testing likely survive method
 const organism1 = pAequorFactory(1, ['G', 'G', 'G', 'G','C', 'C', 'C', 'C','G', 'C', 'A', 'A','A', 'T', 'T']);
 const organism2 = pAequorFactory(3, ['A', 'A', 'A', 'T', 'T', 'T','T', 'A', 'T', 'A','T', 'A', 'G', 'A','G']);
 console.log(organism1.willLikelySurvive()); 
 console.log(organism2.willLikelySurvive()); 
-*/ 
+*/
 
 /* testing survivor array code
 console.log(survivorsArray);
