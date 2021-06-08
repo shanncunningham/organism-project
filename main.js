@@ -4,7 +4,7 @@ const returnRandBase = () => {
   return dnaBases[Math.floor(Math.random() * 4)];
 };
 
-// Returns a random single stand of DNA containing 15 bases
+// Returns a random single strand of DNA containing 15 bases
 const mockUpStrand = () => {
   const newStrand = [];
   for (let i = 0; i < 15; i++) {
@@ -18,9 +18,9 @@ const pAequorFactory = (specimenNum, dna) =>{
     specimenNum: specimenNum,
     dna: dna, 
     mutate(){
-      let randomBase = Math.floor(Math.random() * 15) // chooses a random dna base index from 0 to 15
+      let randomBase = Math.floor(Math.random() * 15) 
       let mutatedBase = returnRandBase();
-      if(this.dna[randomBase] === mutatedBase){ // the flaw in this method is that it could potentially choose the same random DNA strand twice see solution code for while code that fixes this 
+      while(this.dna[randomBase] === mutatedBase){ 
         mutatedBase = returnRandBase();
       }
       this.dna[randomBase] = mutatedBase;
